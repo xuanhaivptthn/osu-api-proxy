@@ -8,6 +8,7 @@ This is a self-contained local Node proxy for the osu! API. It runs directly on 
 
 - A local proxy at `http://127.0.0.1:8787`
 - A simple tunnel setup with `cloudflared` so outside clients can reach your local instance
+- Feel free to use something else, like https://ngrok.com/ 
 
 ## Prerequisites
 
