@@ -48,6 +48,8 @@ You should get a JSON response like:
 
 ## Expose your local proxy with cloudflared
 
+You can also setup using the Tunnels page in your domain config
+
 ### Option 1: Quick temporary tunnel
 
 This is the fastest way to expose your local proxy without creating DNS records:
@@ -164,5 +166,3 @@ var options = {
 };
 var response = UrlFetchApp.fetch(url, options);
 ```
-
-License: This project is licensed under the MIT License - see the `LICENSE` file for details.
