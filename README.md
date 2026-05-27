@@ -8,6 +8,8 @@ This is a self-contained local Node proxy for the osu! API. It runs directly on 
 
 - A local proxy at `http://127.0.0.1:8787`
 - A simple tunnel setup with `cloudflared` so outside clients can reach your local instance
+  - Note, Cloudflare has really good caching rule, which is both good and bad at the same time from my experience. (example: re-fetching stats if a lobby was fetched before ending)
+  - Domains -> Caching -> Cache Rules if you still want to bypass caching
 - Feel free to use something else, like https://ngrok.com/ 
 
 ## Prerequisites
