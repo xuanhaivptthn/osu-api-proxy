@@ -1,5 +1,7 @@
 # THIS ENTIRE REPO IS VIBE-CODED (EVEN THIS README). YOU HAVE BEEN WARNED.
 
+For a proper proxy setup, use nginx https://github.com/osu-community-tournaments/osu-api-proxy
+
 # osu! API Proxy
 
 This is a self-contained local Node proxy for the osu! API. It runs directly on your machine, without Wrangler or Cloudflare Workers.
