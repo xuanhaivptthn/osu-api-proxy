@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+.env.*
+.DS_Store
+.cloudflared/
+*.log
+credentials/
+/.idea/
+/.vscode/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/node_modules/
+dist/
