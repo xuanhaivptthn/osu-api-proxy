@@ -33,16 +33,7 @@ npm start
 
 `npm start` builds the TypeScript source and starts the Node server locally. By default it listens on `http://127.0.0.1:8787`.
 
-Security notes:
-
-- Do not commit secrets. Copy `.env.example` to `.env` and set `PROXY_SECRET` there.
-- `.gitignore` already excludes `.env`, `dist/`, and `node_modules/`.
-
-Test it with:
-
-```bash
-curl http://127.0.0.1:8787/health
-```
+Test it by going to `http://localhost:8787/health` in your browser or terminal.
 
 You should get a JSON response like:
 
@@ -111,33 +102,33 @@ cloudflared tunnel run osu-api-proxy
 
 ### Option 3: Cloudflare Tunnel via the Web Dashboard
 
-This is the easiest approach if you prefer a GUI over the CLI. You configure everything from the Cloudflare dashboard — no CLI tunnel setup required.
+This is the easiest approach if you prefer a GUI over the CLI. You configure everything from the Cloudflare dashboard - no CLI tunnel setup required.
 
 #### Prerequisites
 
 - A Cloudflare account (free tier works)
 - A domain added to Cloudflare (i.e. its nameservers point to Cloudflare)
-- The `cloudflared` daemon installed locally — only needed to **run** the tunnel, not to configure it
+- The `cloudflared` daemon installed locally - only needed to **run** the tunnel, not to configure it
 
-#### Step 1 — Open the Tunnels page
+#### Step 1 - Open the Tunnels page
 
 1. Go to [https://dash.cloudflare.com/](https://dash.cloudflare.com) and log in.
 2. In the left sidebar, select **Networks → Tunnels**.
 3. Click **Create Tunnel**.
 
-#### Step 2 — Create a new tunnel
+#### Step 2 - Create a new tunnel
 
 1. Choose **Cloudflared** as the connector type, then click **Next**.
 2. Give your tunnel a name (e.g. `osu-api-proxy`) and click **Save tunnel**.
 
-#### Step 3 — Install & run the connector
+#### Step 3 - Install & run the connector
 
 The dashboard will show you a one-liner install command. Copy and run it in a terminal on the machine running the proxy.
 
 **Windows (PowerShell):**
 
 ```powershell
-# The dashboard generates a command like this — copy yours directly from the UI:
+# The dashboard generates a command like this - copy yours directly from the UI:
 cloudflared service install <YOUR_TUNNEL_TOKEN>
 ```
 
@@ -151,7 +142,7 @@ cloudflared tunnel run --token <YOUR_TUNNEL_TOKEN>
 
 Once the connector is running, the dashboard will show it as **Connected**. Click **Next**.
 
-#### Step 4 — Add a public hostname
+#### Step 4 - Add a public hostname
 
 1. In the **Public Hostname** tab, click **Add a public hostname**.
 2. Fill in the fields:
@@ -161,13 +152,13 @@ Once the connector is running, the dashboard will show it as **Connected**. Clic
 | **Subdomain** | e.g. `osu-proxy` |
 | **Domain** | your domain managed by Cloudflare |
 | **Type** | `HTTP` |
-| **URL** | `127.0.0.1:8787` |
+| **URL** | `http://127.0.0.1:8787` |
 
 3. Click **Save `<hostname>`**.
 
-Your proxy is now reachable at `https://osu-proxy.yourdomain.com` — no DNS records to create manually, Cloudflare handles it automatically.
+Your proxy is now reachable at `https://osu-proxy.yourdomain.com` - no DNS records to create manually, Cloudflare handles it automatically.
 
-#### Step 5 — (Optional) Disable caching for live data
+#### Step 5 - (Optional) Disable caching for live data
 
 By default Cloudflare may cache API responses, which can cause stale results (e.g. lobby stats after a match ends). To bypass caching:
 
@@ -176,26 +167,7 @@ By default Cloudflare may cache API responses, which can cause stale results (e.
 3. Set **Cache eligibility** to **Bypass cache**.
 4. Save and deploy the rule.
 
-#### Managing the tunnel later
-
-| Action | Where |
-| --- | --- |
-| View connector status | dash.cloudflare.com → Networks → Tunnels → select tunnel → Connectors |
-| Add/remove hostnames | dash.cloudflare.com → Networks → Tunnels → select tunnel → Public Hostname |
-| Delete the tunnel | dash.cloudflare.com → Networks → Tunnels → ··· menu → Delete |
-
 ---
-
-## Development
-
-Use the fast TypeScript dev server during development:
-
-```bash
-npm install
-npm run dev
-```
-
-This runs `ts-node-dev` and restarts on source changes.
 
 ## Optional: Protect the proxy with a secret
 
