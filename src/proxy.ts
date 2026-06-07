@@ -76,6 +76,13 @@ export async function handleRequest(
       }
     }
 
+    // We avoid spoofing Chrome because Node.js's TLS fingerprint will mismatch and cause Cloudflare to block it.
+    // Instead, if the request comes from Google Apps Script, we change the UA to something allowed.
+    const ua = headers.get("user-agent") || "";
+    if (ua.includes("Google-Apps-Script")) {
+      headers.set("user-agent", "osu-api-proxy/1.0");
+    }
+
     // Read request body when present (non-GET/HEAD).
     const body = method === "GET" || method === "HEAD" ? undefined : await readBody(request);
 

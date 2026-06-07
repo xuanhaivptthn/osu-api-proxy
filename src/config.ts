@@ -28,6 +28,11 @@ export const STRIP_REQUEST_HEADERS = new Set([
   "cf-ipcountry",
   "cf-worker",
   "cdn-loop",
+  "x-forwarded-for",
+  "x-forwarded-proto",
+  "x-real-ip",
+  "forwarded",
+  "true-client-ip",
 ]);
 
 // Response headers we intentionally strip from upstream responses.
